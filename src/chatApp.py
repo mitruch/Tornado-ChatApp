@@ -39,7 +39,12 @@ class ChatWebSocket(tornado.websocket.WebSocketHandler):
         self.connections.remove(self)
 
 
+def main():
+    app = Application()  # Creating tornado app object
+    app.listen(8080)  # Setup port
+    tornado.ioloop.IOLoop.current().start()  # Start tornado I/O loop
+
+
 if __name__ == "__main__":
-    app = Application()
-    app.listen(8080)
-    tornado.ioloop.IOLoop.current().start()
+    main()
+
