@@ -4,7 +4,7 @@ import tornado.web
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        self.write("Hello tornado chat app")
+        self.render("./templates/index.html")
 
 
 def make_app():
