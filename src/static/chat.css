@@ -1,13 +1,31 @@
- body {
-    background: red;
+body {
+    background: #272828;
     margin: 3vw;
     font-family: sans-serif;
     font-size: 10pt;
-    color: black;
-  }
+    color: #00ffa9;
+}
 
-  input {
+input {
+    width: 80%;
+    border: 2px solid #00ffa9;;
+    border-radius: 4px;
+    background-color: #272828;
     font-family: sans-serif;
     font-size: 12pt;
-    color: blue;
-  }
+    color: white;
+}
+
+button {
+    width: 100px;
+    margin: 5px;
+    border: 2px solid white;
+    border-radius: 4px;
+    background-color: #272828;
+    font-size: 12pt;
+    color: white
+}
+
+.field {
+    padding-top: 20px;
+}

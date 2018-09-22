@@ -7,9 +7,9 @@
 </head>
 <body>
     <div id="messages"></div>
-    <div style="padding-top: 20px;">
+    <div class="field">
         <form onsubmit="return sendMessage()">
-            <input id="message" type="text" style="width: 65%;"><button style="width: 25%">Send</button>
+            <input id="message" type="text"><button>Send</button>
         </form>
     </div>
     <script src="{{ static_url("chat.js") }}" type="text/javascript"></script>
