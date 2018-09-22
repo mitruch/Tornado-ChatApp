@@ -11,14 +11,17 @@ class MainHandler(tornado.web.RequestHandler):
 
 
 class ChatWebSocket(tornado.websocket.WebSocketHandler):
-    connections = set()
+    connections = set()   # Shared between the instances
 
+    # Handle open connection
     def open(self):
         self.connections.add(self)
 
+    # Handle incoming messages
     def on_message(self, message):
         [client.write_message(message) for client in self.connections]
 
+    # Handle close connection
     def on_close(self):
         self.connections.remove(self)
 
