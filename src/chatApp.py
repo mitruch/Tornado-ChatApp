@@ -5,6 +5,19 @@ import tornado.web
 import tornado.websocket
 
 
+class Application(tornado.web.Application):
+    def __init__(self):
+        handlers = [
+            (r"/", MainHandler),
+            (r"/chatsocket", ChatWebSocket)
+        ]
+        settings = dict(
+            template_path=os.path.join(os.path.dirname(__file__), "templates"),
+            static_path=os.path.join(os.path.dirname(__file__), "static")
+        )
+        super(Application, self).__init__(handlers, **settings)
+
+
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.render("index.html")
@@ -26,16 +39,7 @@ class ChatWebSocket(tornado.websocket.WebSocketHandler):
         self.connections.remove(self)
 
 
-def make_app():
-    return tornado.web.Application(
-        [
-            (r"/", MainHandler)
-        ],
-        template_path=os.path.join(os.path.dirname(__file__), "templates"),
-    )
-
-
 if __name__ == "__main__":
-    app = make_app()
+    app = Application()
     app.listen(8080)
     tornado.ioloop.IOLoop.current().start()
