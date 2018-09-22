@@ -3,8 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Chat App</title>
+    <link rel="stylesheet" href="{{ static_url("chat.css") }}" type="text/css">
 </head>
 <body>
-    <h1>Hello chat app</h1>
+    <div id="messages"></div>
+    <div style="padding-top: 20px;">
+        <form onsubmit="return sendMessage()">
+            <input id="message" type="text" style="width: 65%;"><button style="width: 25%">Send</button>
+        </form>
+    </div>
+    <script src="{{ static_url("chat.js") }}" type="text/javascript"></script>
 </body>
 </html>
