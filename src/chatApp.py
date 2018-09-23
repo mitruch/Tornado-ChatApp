@@ -1,3 +1,11 @@
+"""Simple real-time chat application
+
+Created with Tornado Web Server 
+and WebSockets technology.
+
+Author: Katarzyna Mitrus
+"""
+
 import os.path
 
 import tornado.ioloop
@@ -6,7 +14,7 @@ import tornado.websocket
 
 
 class MainHandler(tornado.web.RequestHandler):
-    def get(self):
+    def get(self): # Overrides parent method
         self.render("index.html")
 
 
@@ -34,8 +42,8 @@ def main():
             (r"/", MainHandler),
             (r"/chatsocket", ChatWebSocket)
         ],
-            template_path=os.path.join(os.path.dirname(__file__), "templates"),
-            static_path=os.path.join(os.path.dirname(__file__), "static")
+        template_path=os.path.join(os.path.dirname(__file__), "templates"),
+        static_path=os.path.join(os.path.dirname(__file__), "static")
     )
     app.listen(8080)  # Setup port
     tornado.ioloop.IOLoop.current().start()  # Start tornado I/O loop
@@ -43,4 +51,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
