@@ -12,14 +12,21 @@ import tornado.ioloop
 import tornado.web
 import tornado.websocket
 
+from tornado.options import define
+from tornado.options import options
+
+
+# Defining port to listen on
+define("port", default=8080)
+
 
 class MainHandler(tornado.web.RequestHandler):
-    def get(self): # Overrides parent method
+    def get(self):  # Overrides parent method
         self.render("index.html")
 
 
 class ChatWebSocket(tornado.websocket.WebSocketHandler):
-    connections = set()   # Shared between the instances
+    connections = set()  # Shared between the instances
 
     # Handle open connection
     def open(self):
@@ -45,7 +52,7 @@ def main():
         template_path=os.path.join(os.path.dirname(__file__), "templates"),
         static_path=os.path.join(os.path.dirname(__file__), "static")
     )
-    app.listen(8080)  # Setup port
+    app.listen(options.port)  # Setup port
     tornado.ioloop.IOLoop.current().start()  # Start tornado I/O loop
 
 
