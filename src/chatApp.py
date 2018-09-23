@@ -19,7 +19,8 @@ class ChatWebSocket(tornado.websocket.WebSocketHandler):
 
     # Handle incoming messages
     def on_message(self, message):
-        [client.write_message(message) for client in self.connections]
+        for client in self.connections:
+            client.write_message(message)
 
     # Handle close connection
     def on_close(self):
